@@ -33,13 +33,13 @@ When LazyKey is **Active** (Purple Glow), the following keys are remapped:
 
 ## 📥 Installation (For Users)
 
-1.  Go to the \[suspicious link removed\] page.
+1.  Go to the [Download](https://github.com/yottajunaid/LazyKey/releases/download/EXE_File/LazyKey.exe) page.
     
-2.  Download `LazyKey_Setup_v1.exe`.
+2.  Download `LazyKey.exe`.
     
-3.  Run the installer and follow the "Next" prompts.
+3.  Run the installer and follow the "Next" prompts. It may recognize as unknown publisher so just click on **more info** and click on **Install Anyway**
     
-4.  Launch **LazyKey** from your Desktop or Start Menu.
+4.  Launch **LazyKey** from your Desktop or Start Menu or from wherever you downloaded the file.
     
 
 ## 🛠️ Development (For Developers)
