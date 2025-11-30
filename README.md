@@ -76,7 +76,7 @@ If you want to modify the code or build it from source, follow these steps.
 1.  Clone this repository:
     
     ```
-    git clone [https://github.com/YourUsername/LazyKey.git](https://github.com/YourUsername/LazyKey.git)
+    git clone https://github.com/yottajunaid/LazyKey.git
     cd LazyKey
     ```
     
@@ -86,7 +86,7 @@ If you want to modify the code or build it from source, follow these steps.
     .\build.bat
     ```
     
-3.  This will compile `lazykey.cpp` and generate `KeyboardTool.exe`.
+3.  This will compile `lazykey.cpp` and generate `Lazykey.exe`.
     
 
 ### 3\. Create Installer
@@ -97,7 +97,7 @@ To generate a professional `setup.exe` like the one in Releases:
     
 2.  Open `installer_config.iss` in Inno Setup.
     
-3.  Click **Build** > **Compile**.
+3.  Click **Build** > **Compile** or simply click run.
     
 4.  The installer will be generated in the `Output` folder.
     
@@ -117,4 +117,4 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## 📄 License
 
-[MIT](https://www.google.com/search?q=LICENSE "null")
+[MIT](https://github.com/yottajunaid/LazyKey/blob/main/LICENSE)
