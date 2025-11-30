@@ -61,7 +61,7 @@ If you want to modify the code or build it from source, follow these steps.
 
 1.  Install **MSYS2** from [msys2.org](https://www.msys2.org/ "null").
     
-2.  Open the MSYS2 terminal and run:
+2.  It will Open the MSYS2 terminal. Run this command and click enter to install all setups:
     
     ```
     pacman -S mingw-w64-ucrt-x86_64-toolchain
@@ -69,7 +69,17 @@ If you want to modify the code or build it from source, follow these steps.
     
 3.  Add the binary path to your Windows Environment Variables:
     
-    - Path: `C:\msys64\ucrt64\bin`
+    - Press the Windows Key and search "Edit environment variables".
+
+    - Click the result. In the window, click "Environment Variables...".
+
+    - In the "System variables" list (bottom half), find "Path", select it, and click "Edit".
+
+    - Click "New" and paste this path: C:\msys64\ucrt64\bin
+
+    - Click OK on all windows.
+
+4.  Verify Restart VS Code. Open a terminal and type g++ --version. If you see text describing the version, you are ready to run build.bat.
 
 ### 2\. Build from Source
 
@@ -99,7 +109,7 @@ To generate a professional `setup.exe` like the one in Releases:
     
 3.  Click **Build** > **Compile** or simply click run.
     
-4.  The installer will be generated in the `Output` folder.
+4.  The installer will be generated in the `Output` folder or `Selected` folder.
     
 
 ## 📂 Project Structure
