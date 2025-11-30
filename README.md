@@ -1,4 +1,4 @@
-# LazyKey 🚀
+# LazyKey ⌨️🚀
 
 **LazyKey** is a lightweight, modern Windows utility that transforms your keyboard into a productivity powerhouse. With a single toggle, it rebinds standard keys into essential shortcuts (Copy, Paste, Cut, Undo, Redo), allowing for rapid-fire editing without holding down the `Ctrl` key.
 
