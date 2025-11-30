@@ -37,9 +37,11 @@ When LazyKey is **Active** (Purple Glow), the following keys are remapped:
     
 2.  Download `LazyKey_Setup_v1.exe`.
     
-3.  Run the installer and follow the "Next" prompts.
-    
-4.  Launch **LazyKey** from your Desktop or Start Menu or from wherever you downloaded the file.
+3.  Run the installer and follow the "Next" prompts. It may say **Unknown publisher**, just click on **more info** and click **Install Anyway**
+
+4.  Create Desktop Shortcut
+   
+5.  Launch **LazyKey** from your Desktop or Start Menu or from wherever you downloaded the file.
     
 
 ## 🛠️ Development (For Developers)
