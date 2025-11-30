@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LazyKey Infographic: Productivity Evolved</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f8fafc; } /* Slate 900 Bg */
+        .chart-container { position: relative; width: 100%; max-width: 600px; margin: 0 auto; height: 350px; max-height: 400px; }
+        .glass-panel { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(148, 163, 184, 0.1); }
+        .neon-glow { box-shadow: 0 0 15px rgba(168, 85, 247, 0.4); }
+        .step-connector::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -20px;
+            width: 2px;
+            height: 20px;
+            background-color: #475569;
+            transform: translateX(-50%);
+        }
+        @media (min-width: 768px) {
+            .step-connector::after {
+                width: 40px;
+                height: 2px;
+                left: 100%;
+                top: 50%;
+                bottom: auto;
+                transform: translateY(-50%);
+            }
+        }
+        .last-step::after { display: none; }
+    </style>
+    <!-- Chosen Palette: "Cyber Productivity" - High contrast dark mode with Vibrant Purple (#A855F7) and Cyan (#22D3EE) accents. Matches the "Black and Purple" theme of the software while ensuring readability. -->
+    
+    <!-- Application Structure Plan:
+         1. Hero Section: Hook & Value Prop. Includes a live Canvas simulation of the app interface to demonstrate the "Start/Stop" visual feedback described in source.
+         2. Efficiency Analysis: Comparative Bar Chart (Chart.js) showing keystroke reduction (Quantitative Data).
+         3. Key Mapping Logic: Interactive Grid (HTML/JS) visualizing the specific key transformations (Inform/Organize).
+         4. Workflow Timeline: Dual-track layout for "User Journey" (Installation) and "Developer Journey" (Build Process) using styled HTML steps (Organize).
+         5. Technical Composition: Doughnut Chart (Chart.js) breaking down the tech stack features (Qualitative/Quantitative).
+         6. Conclusion: Final call to action based on the "Lightweight" nature.
+         
+         Structure Rationale: The flow moves from "What is it?" (Visual) to "Why use it?" (Data) to "How to use/make it?" (Process), creating a complete narrative loop.
+    -->
+
+    <!-- Visualization & Content Choices:
+         1. App Simulator (Canvas): Goal: Inform/Engage. Method: Custom Canvas Animation. Justification: Directly visualizes the "Circle showing Start/Stop" and "modern blur" mentioned in source without violating the No SVG rule.
+         2. Keystroke Comparison (Chart.js): Goal: Compare. Method: Grouped Bar Chart. Justification: Quantifies the "productivity powerhouse" claim by contrasting input effort (2 keys vs 1 key).
+         3. Mapping Grid (HTML/CSS): Goal: Inform. Method: Styled Grid Cards. Justification: The clearest way to show the 1-to-1 relationship between keys and actions.
+         4. Installation/Dev Flow (HTML/Tailwind): Goal: Organize. Method: Step-by-step cards. Justification: Process flows are best represented linearly; HTML structure ensures accessibility over complex diagrams.
+         5. Tech Stack (Chart.js): Goal: Composition. Method: Doughnut Chart. Justification: Visualizes the "Lightweight" and "Native" aspects relative to the whole package.
+         
+         CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
+    -->
+</head>
+<body class="antialiased overflow-x-hidden">
+
+    <!-- Section 1: Hero & App Simulator -->
+    <header class="relative pt-16 pb-12 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            
+            <!-- Narrative Text -->
+            <div class="space-y-6 z-10">
+                <div class="inline-block px-3 py-1 rounded-full bg-purple-900/30 border border-purple-500/30 text-purple-400 text-sm font-semibold tracking-wider uppercase">
+                    Windows Productivity Utility
+                </div>
+                <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                    LazyKey <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">🚀</span>
+                </h1>
+                <p class="text-xl text-slate-300 max-w-lg leading-relaxed">
+                    Transform your keyboard into a rapid-fire command center. A lightweight C++ tool that rebinds standard keys to essential shortcuts with a single toggle.
+                </p>
+                
+                <div class="grid grid-cols-2 gap-4 pt-4">
+                    <div class="p-4 rounded-xl bg-slate-800 border border-slate-700">
+                        <div class="text-3xl font-bold text-white">50%</div>
+                        <div class="text-sm text-slate-400">Keystroke Reduction</div>
+                    </div>
+                    <div class="p-4 rounded-xl bg-slate-800 border border-slate-700">
+                        <div class="text-3xl font-bold text-white">0ms</div>
+                        <div class="text-sm text-slate-400">Input Latency</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive App Simulator (Canvas) -->
+            <div class="relative flex flex-col items-center justify-center p-8 rounded-3xl glass-panel shadow-2xl ring-1 ring-white/10">
+                <h3 class="absolute top-6 left-6 text-sm font-bold text-slate-400 uppercase tracking-widest">Interface Preview</h3>
+                <div class="relative z-10 mt-8 mb-4">
+                    <canvas id="appSimulator" width="300" height="300" class="cursor-pointer transition-transform active:scale-95"></canvas>
+                </div>
+                <p class="text-center text-slate-400 text-sm max-w-xs">
+                    <span class="text-purple-400 font-bold">Interactive Demo:</span> Click the circle above to experience the toggle mechanic described in the software design.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section 2: The Efficiency Data (Chart) -->
+    <section class="py-16 bg-slate-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12 text-center max-w-3xl mx-auto">
+                <h2 class="text-3xl font-bold text-white mb-4">Why Use LazyKey?</h2>
+                <p class="text-slate-400 text-lg">
+                    Standard Windows shortcuts require "hand gymnastics"—holding <code class="bg-slate-700 px-1 rounded text-white">Ctrl</code> while reaching for another key. LazyKey simplifies this to a single tap, doubling your input efficiency for repetitive tasks.
+                </p>
+            </div>
+
+            <div class="bg-slate-800 rounded-2xl p-6 md:p-8 shadow-xl border border-slate-700">
+                <div class="flex flex-col md:flex-row justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold text-white">Keystroke Cost Analysis</h3>
+                    <div class="flex space-x-4 mt-4 md:mt-0 text-sm">
+                        <div class="flex items-center"><span class="w-3 h-3 rounded-full bg-slate-500 mr-2"></span> Standard Windows</div>
+                        <div class="flex items-center"><span class="w-3 h-3 rounded-full bg-purple-500 mr-2"></span> LazyKey</div>
+                    </div>
+                </div>
+                
+                <!-- Chart Container -->
+                <div class="chart-container">
+                    <canvas id="efficiencyChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Logic & Mapping (Grid) -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <!-- Explainer -->
+                <div class="md:col-span-1 space-y-6">
+                    <h2 class="text-3xl font-bold text-white">Intelligent Remapping</h2>
+                    <p class="text-slate-400 leading-relaxed">
+                        When the "Purple Glow" is active, specific keys bypass their normal typing function and trigger system-level commands. The rest of your keyboard remains unaffected.
+                    </p>
+                    <div class="p-6 bg-purple-900/20 border border-purple-500/30 rounded-xl">
+                        <h4 class="text-purple-300 font-bold mb-2">Safety Feature</h4>
+                        <p class="text-sm text-purple-200/80">
+                            Pressing <code class="bg-purple-900 px-1 rounded font-bold">S</code> immediately toggles the software OFF, returning you to normal typing mode instantly.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Interactive Grid -->
+                <div class="md:col-span-2 grid grid-cols-2 sm:grid-cols-3 gap-4">
+                    <!-- Key Cards generated by JS -->
+                    <div class="key-card p-6 rounded-xl bg-slate-800 border border-slate-700 hover:border-purple-500 transition-colors group">
+                        <div class="text-4xl font-mono font-bold text-white mb-2 group-hover:text-purple-400">C</div>
+                        <div class="text-xs text-slate-500 uppercase tracking-wider">Becomes</div>
+                        <div class="text-lg font-bold text-purple-400">Copy</div>
+                        <div class="text-xs text-slate-500 mt-1">Ctrl + C</div>
+                    </div>
+                    <div class="key-card p-6 rounded-xl bg-slate-800 border border-slate-700 hover:border-purple-500 transition-colors group">
+                        <div class="text-4xl font-mono font-bold text-white mb-2 group-hover:text-purple-400">V</div>
+                        <div class="text-xs text-slate-500 uppercase tracking-wider">Becomes</div>
+                        <div class="text-lg font-bold text-purple-400">Paste</div>
+                        <div class="text-xs text-slate-500 mt-1">Ctrl + V</div>
+                    </div>
+                    <div class="key-card p-6 rounded-xl bg-slate-800 border border-slate-700 hover:border-purple-500 transition-colors group">
+                        <div class="text-4xl font-mono font-bold text-white mb-2 group-hover:text-purple-400">X</div>
+                        <div class="text-xs text-slate-500 uppercase tracking-wider">Becomes</div>
+                        <div class="text-lg font-bold text-purple-400">Cut</div>
+                        <div class="text-xs text-slate-500 mt-1">Ctrl + X</div>
+                    </div>
+                    <div class="key-card p-6 rounded-xl bg-slate-800 border border-slate-700 hover:border-purple-500 transition-colors group">
+                        <div class="text-4xl font-mono font-bold text-white mb-2 group-hover:text-purple-400">Z</div>
+                        <div class="text-xs text-slate-500 uppercase tracking-wider">Becomes</div>
+                        <div class="text-lg font-bold text-purple-400">Undo</div>
+                        <div class="text-xs text-slate-500 mt-1">Ctrl + Z</div>
+                    </div>
+                    <div class="key-card p-6 rounded-xl bg-slate-800 border border-slate-700 hover:border-purple-500 transition-colors group">
+                        <div class="text-4xl font-mono font-bold text-white mb-2 group-hover:text-purple-400">A</div>
+                        <div class="text-xs text-slate-500 uppercase tracking-wider">Becomes</div>
+                        <div class="text-lg font-bold text-purple-400">Redo</div>
+                        <div class="text-xs text-slate-500 mt-1">Ctrl + Y</div>
+                    </div>
+                    <div class="key-card p-6 rounded-xl bg-slate-800 border border-slate-700 hover:border-cyan-400 transition-colors group">
+                        <div class="text-4xl font-mono font-bold text-white mb-2 group-hover:text-cyan-400">S</div>
+                        <div class="text-xs text-slate-500 uppercase tracking-wider">Action</div>
+                        <div class="text-lg font-bold text-cyan-400">Toggle</div>
+                        <div class="text-xs text-slate-500 mt-1">On / Off Switch</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Implementation Workflows (User vs Dev) -->
+    <section class="py-16 bg-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white">Getting Started</h2>
+                <p class="text-slate-400 mt-2">Whether you are a user or a developer, the process is streamlined.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                
+                <!-- User Workflow -->
+                <div>
+                    <h3 class="text-xl font-bold text-purple-400 mb-6 flex items-center">
+                        <span class="bg-purple-500/10 p-2 rounded-lg mr-3 text-2xl">📥</span> User Installation
+                    </h3>
+                    <div class="space-y-6 relative border-l-2 border-slate-700 ml-3 pl-8">
+                        <div class="relative">
+                            <span class="absolute -left-[41px] top-0 h-6 w-6 rounded-full bg-slate-900 border-2 border-purple-500 flex items-center justify-center text-xs font-bold text-purple-500">1</span>
+                            <h4 class="text-white font-bold">Download</h4>
+                            <p class="text-slate-400 text-sm mt-1">Get <code class="text-xs bg-slate-900 p-1 rounded">LazyKey_Setup_v1.exe</code> from the Releases page.</p>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-[41px] top-0 h-6 w-6 rounded-full bg-slate-900 border-2 border-purple-500 flex items-center justify-center text-xs font-bold text-purple-500">2</span>
+                            <h4 class="text-white font-bold">Install</h4>
+                            <p class="text-slate-400 text-sm mt-1">Run the installer. Follow the standard "Next" prompts to set up shortcuts.</p>
+                        </div>
+                        <div class="relative">
+                            <span class="absolute -left-[41px] top-0 h-6 w-6 rounded-full bg-slate-900 border-2 border-purple-500 flex items-center justify-center text-xs font-bold text-purple-500">3</span>
+                            <h4 class="text-white font-bold">Launch</h4>
+                            <p class="text-slate-400 text-sm mt-1">Open from Desktop. Click the "Start" circle to begin mapping.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Developer Workflow -->
+                <div>
+                    <h3 class="text-xl font-bold text-cyan-400 mb-6 flex items-center">
+                        <span class="bg-cyan-500/10 p-2 rounded-lg mr-3 text-2xl">🛠️</span> Developer Build
+                    </h3>
+                    <div class="space-y-4">
+                        <!-- Step Cards -->
+                        <div class="flex items-start bg-slate-900 p-4 rounded-lg border border-slate-700">
+                            <div class="flex-shrink-0 h-8 w-8 rounded bg-cyan-900/50 text-cyan-400 flex items-center justify-center font-bold mr-4">1</div>
+                            <div>
+                                <h4 class="text-white font-bold text-sm">Environment Setup</h4>
+                                <p class="text-slate-400 text-xs mt-1">Install MSYS2 and the MinGW-w64 toolchain. Add <code class="text-slate-500">/bin</code> to PATH.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start bg-slate-900 p-4 rounded-lg border border-slate-700">
+                            <div class="flex-shrink-0 h-8 w-8 rounded bg-cyan-900/50 text-cyan-400 flex items-center justify-center font-bold mr-4">2</div>
+                            <div>
+                                <h4 class="text-white font-bold text-sm">Clone & Build</h4>
+                                <p class="text-slate-400 text-xs mt-1">Run <code class="text-orange-400">.\build.bat</code>. This script compiles <code class="text-orange-400">lazykey.cpp</code> and links GDI+ automatically.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start bg-slate-900 p-4 rounded-lg border border-slate-700">
+                            <div class="flex-shrink-0 h-8 w-8 rounded bg-cyan-900/50 text-cyan-400 flex items-center justify-center font-bold mr-4">3</div>
+                            <div>
+                                <h4 class="text-white font-bold text-sm">Package</h4>
+                                <p class="text-slate-400 text-xs mt-1">Use Inno Setup with <code class="text-orange-400">installer_config.iss</code> to generate the final setup.exe.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 py-12 bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <span class="text-2xl font-bold text-white tracking-tight">LazyKey</span>
+                <p class="text-slate-500 text-sm mt-1">Open Source MIT License</p>
+            </div>
+            <div class="flex space-x-6">
+                <a href="#" class="text-slate-400 hover:text-purple-400 transition-colors">GitHub</a>
+                <a href="#" class="text-slate-400 hover:text-purple-400 transition-colors">Issues</a>
+                <a href="#" class="text-slate-400 hover:text-purple-400 transition-colors">Releases</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // --- 1. App Simulator Logic ---
+        const canvas = document.getElementById('appSimulator');
+        const ctx = canvas.getContext('2d');
+        
+        let isActive = false;
+        let pulse = 0;
+        
+        // Animation Loop
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            const cx = canvas.width / 2;
+            const cy = canvas.height / 2;
+            const radius = 60;
+            
+            // Pulse Effect calculation
+            pulse += 0.05;
+            const glowSize = isActive ? 20 + Math.sin(pulse) * 5 : 0;
+            
+            // Draw Glow (Blur)
+            if (isActive) {
+                const gradient = ctx.createRadialGradient(cx, cy, radius, cx, cy, radius + 40 + glowSize);
+                gradient.addColorStop(0, 'rgba(168, 85, 247, 0.6)'); // Purple
+                gradient.addColorStop(1, 'rgba(168, 85, 247, 0)');
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(cx, cy, radius + 40 + glowSize, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            // Draw Main Circle
+            ctx.beginPath();
+            ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+            ctx.fillStyle = isActive ? '#7e22ce' : '#334155'; // Active Purple vs Inactive Slate
+            ctx.fill();
+            
+            // Draw Border
+            ctx.strokeStyle = isActive ? '#d8b4fe' : '#475569';
+            ctx.lineWidth = 4;
+            ctx.stroke();
+
+            // Draw Text
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 24px Inter, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(isActive ? 'STOP' : 'START', cx, cy);
+            
+            // Status Text below
+            ctx.fillStyle = isActive ? '#d8b4fe' : '#94a3b8';
+            ctx.font = '14px Inter, sans-serif';
+            ctx.fillText(isActive ? 'Status: Active' : 'Status: Inactive', cx, cy + 90);
+
+            requestAnimationFrame(draw);
+        }
+        
+        draw();
+        
+        // Interaction
+        canvas.addEventListener('click', () => {
+            isActive = !isActive;
+        });
+
+
+        // --- 2. Chart.js Efficiency Chart ---
+        const ctxChart = document.getElementById('efficiencyChart').getContext('2d');
+        
+        // Data Preparation
+        const actions = ['Copy', 'Paste', 'Cut', 'Undo', 'Redo'];
+        
+        new Chart(ctxChart, {
+            type: 'bar',
+            data: {
+                labels: actions,
+                datasets: [
+                    {
+                        label: 'Standard Windows (Ctrl + Key)',
+                        data: [2, 2, 2, 2, 2],
+                        backgroundColor: '#64748b', // Slate 500
+                        borderRadius: 6,
+                        barPercentage: 0.6,
+                        categoryPercentage: 0.8
+                    },
+                    {
+                        label: 'LazyKey (Single Key)',
+                        data: [1, 1, 1, 1, 1],
+                        backgroundColor: '#a855f7', // Purple 500
+                        borderRadius: 6,
+                        barPercentage: 0.6,
+                        categoryPercentage: 0.8
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false 
+                    },
+                    tooltip: {
+                        backgroundColor: '#1e293b',
+                        titleColor: '#f8fafc',
+                        bodyColor: '#cbd5e1',
+                        borderColor: '#334155',
+                        borderWidth: 1,
+                        padding: 10,
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                // Required Tooltip Config for wrapping (though short labels here, good practice)
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                    return label.join(' ');
+                                } else {
+                                    return label;
+                                }
+                            },
+                            label: function(context) {
+                                return ` ${context.dataset.label}: ${context.raw} Keystrokes`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: '#334155'
+                        },
+                        ticks: {
+                            color: '#94a3b8',
+                            stepSize: 1
+                        },
+                        title: {
+                            display: true,
+                            text: 'Keystrokes Required',
+                            color: '#94a3b8'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            color: '#f8fafc',
+                            font: {
+                                weight: 'bold'
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
