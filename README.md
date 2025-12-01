@@ -50,7 +50,7 @@ If you want to modify the code or build it from source, follow these steps.
 
 ### Prerequisites
 
-- **OS:** Windows 10 or 11.
+- **OS:** Windows XP, 7, 8, 10 or 11.
     
 - **Compiler:** MinGW-w64 (GCC).
     
